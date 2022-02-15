@@ -18,6 +18,7 @@ use App\Http\Controllers\TahsinController;
 use App\Http\Controllers\NilaiController;
 use App\Http\Controllers\CetakController;
 use App\Http\Controllers\ProfilController;
+use App\Http\Controllers\ProfilUsahaController;
 use App\Models\Laporan;
 
 /*
@@ -129,6 +130,13 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/nilai/edit/{id}', [NilaiController::class, 'edit'])->name('nilai.edit');
     Route::post('/nilai/update/{id}', [NilaiController::class, 'update'])->name('nilai.update');
     Route::get('/nilai/destroy/{id}', [NilaiController::class, 'destroy'])->name('nilai.destroy');
+
+    Route::get('/profil-usaha', [ProfilUsahaController::class, 'index'])->name('profil-usaha');
+    Route::get('/profil-usaha/create', [ProfilUsahaController::class, 'create'])->name('profil-usaha.create');
+    Route::post('/profil-usaha/store', [ProfilUsahaController::class, 'store'])->name('profil-usaha.store');
+    Route::get('/profil-usaha/edit/{id}', [ProfilUsahaController::class, 'edit'])->name('profil-usaha.edit');
+    Route::post('/profil-usaha/update/{id}', [ProfilUsahaController::class, 'update'])->name('profil-usaha.update');
+    Route::get('/profil-usaha/destroy/{id}', [ProfilUsahaController::class, 'destroy'])->name('profil-usaha.destroy');
 
     Route::post('/cetak', [CetakController::class, 'store'])->name('cetak');
 
