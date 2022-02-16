@@ -444,7 +444,7 @@
                         </a>
                         <ul class="submenu-angle" aria-expanded="true">
                             <li><a title="Akademik" href="{{ route('profil-usaha')}}"><span class="mini-sub-pro">Profil Usaha</span></a></li>
-                            <li><a title="Karya" href="{{ route('karya')}}"><span class="mini-sub-pro">Keuangan Usaha</span></a></li>
+                            <li><a title="Karya" href="{{ route('keuangan')}}"><span class="mini-sub-pro">Keuangan Usaha</span></a></li>
                             <li><a title="Forum" href="{{ route('forum')}}"><span class="mini-sub-pro">PPT</span></a></li>
                             <li><a title="Prestasi" href="{{ route('prestasi')}}"><span class="mini-sub-pro">SKU</span></a></li>
                         </ul>
