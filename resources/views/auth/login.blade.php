@@ -132,6 +132,29 @@
         </div>
       </div>   
     </div>
+
+    <div class="modal" id="imagemodal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Modal title</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>Situs Ini Hanya Digunakan Untuk Proses Development.
+                <a href="https://simoneb.sebi.ac.id/public/">Klik Disini</a> untuk membuka sistem
+              </p>
+              
+            </div>
+            {{-- <div class="modal-footer">
+              <button type="button" class="btn btn-primary">Save changes</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div> --}}
+          </div>
+      </div>
+    </div>
     <!-- jquery
 		============================================ -->
     <script src="{{ asset('template') }}/js/vendor/jquery-1.12.4.min.js"></script>
@@ -205,6 +228,12 @@
         });
     });
 </script>
+<script>
+   $(document).ready(function(){
+        $("#imagemodal").modal('show');
+    });
+</script>
+
 </body>
 
 </html>
