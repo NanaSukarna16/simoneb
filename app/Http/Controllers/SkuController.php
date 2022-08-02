@@ -3,22 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Keuangan;
+use App\Models\SKU;
 use Illuminate\Support\Facades\File;
 
-class KeuanganController extends Controller
+class SkuController extends Controller
 {
-    public $new_keuangan;
+    public $new_sku;
     public function __construct()
     {
-        $this->new_keuangan = new Keuangan();
+        $this->new_sku = new SKU();
     }
     public function index()
     {
 
-        return view('keuangan.index');
+        return view('sku.index');
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -26,7 +25,7 @@ class KeuanganController extends Controller
      */
     public function create()
     {
-       return view('keuangan.create');
+        return view('sku.create');
     }
 
     /**
@@ -37,7 +36,7 @@ class KeuanganController extends Controller
      */
     public function store(Request $request)
     {
-        $rules = [
+         $rules = [
             'file' => "required|mimes:pptx,docx,xlsx|"
         ];
         $messages = [
@@ -52,16 +51,14 @@ class KeuanganController extends Controller
 
         $namaFile = $nm->getClientOriginalName();
 
-        $this->new_keuangan->file = $namaFile;
-        $this->new_keuangan->users_id = $request->user;
+        $this->new_sku->file = $namaFile;
+        $this->new_sku->users_id = $request->user;
 
 
-        $nm->move(public_path() . '/storage/keuangan', $namaFile);
-        $this->new_keuangan->save();
+        $nm->move(public_path() . '/storage/sku', $namaFile);
+        $this->new_sku->save();
 
-        // dd($request->all());
-
-        return redirect()->route('keuangan')->with('status', 'Laporan Keuangan Usaha successfully created');
+        return redirect()->route('sku')->with('status', 'SKU successfully created');
     }
 
     /**
@@ -83,11 +80,11 @@ class KeuanganController extends Controller
      */
     public function edit($id)
     {
-        // dapatkan data berdasarkan id kategori
-        $keuangan_edit = Keuangan::find($id);
+         // dapatkan data berdasarkan id kategori
+        $sku_edit = SKU::find($id);
 
-        return view('keuangan.edit', [
-           'keuangan' => $keuangan_edit
+        return view('sku.edit', [
+           'sku' => $sku_edit
         ]);
     }
 
@@ -100,7 +97,7 @@ class KeuanganController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $rules = [
+         $rules = [
             'file' => "required|mimes:pptx,docx,xlsx|"
         ];
         $messages = [
@@ -110,28 +107,28 @@ class KeuanganController extends Controller
             'mimes' => ":attribute Ektensi error, gunakan .pptx atau .docx dan .xlsx"
         ];
 
-        $keuangan_edit = Keuangan::find($id);
-        $fileLama = $keuangan_edit->file;
+        $sku_edit = SKU::find($id);
+        $fileLama = $sku_edit->file;
 
         if (!$request->file) {
-            $keuangan_edit->file = $fileLama;
+            $sku_edit->file = $fileLama;
         } else {
 
             if ($request->file != $fileLama) {
                 $nm = $request->file;
 
                 $namaFile = $nm->getClientOriginalName();
-                $keuangan_edit->file = $namaFile;
+                $sku_edit->file = $namaFile;
 
-                $nm->move(public_path() . '/storage/keuangan', $namaFile);
+                $nm->move(public_path() . '/storage/sku', $namaFile);
             } else {
-                $request->file->move(public_path() . '/storage/keuangan', $fileLama);
+                $request->file->move(public_path() . '/storage/sku', $fileLama);
             }
         }
-        $keuangan_edit->users_id = $request->user;
-        $keuangan_edit->save();
+        $sku_edit->users_id = $request->user;
+        $sku_edit->save();
 
-        return redirect()->route('keuangan')->with('status', 'Laporan Keuangan usaha successfully Updated');
+        return redirect()->route('sku')->with('status', 'SKU successfully Updated');
     }
 
     /**
@@ -142,14 +139,14 @@ class KeuanganController extends Controller
      */
     public function destroy($id)
     {
-        $keuangan_hapus = Keuangan::findOrFail($id);
-        $image_path = "storage/keuangan/" . $keuangan_hapus->file;
+        $sku_hapus = SKU::findOrFail($id);
+        $image_path = "storage/sku/" . $sku_hapus->file;
 
         if (File::exists($image_path)) {
             File::delete($image_path);
         }
 
-        $keuangan_hapus->delete();
-        return redirect()->route('keuangan')->with('status', 'Laporan Keuangan Usaha successfully deleted');
+        $sku_hapus->delete();
+        return redirect()->route('sku')->with('status', 'SKU successfully deleted');
     }
 }

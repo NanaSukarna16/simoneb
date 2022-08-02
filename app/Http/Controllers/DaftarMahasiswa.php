@@ -113,13 +113,16 @@ class DaftarMahasiswa extends Controller
         $data9 = DB::select("SELECT * FROM tahsin WHERE users_id = $id ");
         $data10 = DB::select("SELECT * FROM laporan WHERE users_id = $id ");
         $data11 = DB::select("SELECT * FROM nilai WHERE users_id = $id ");
+        $data12 = DB::select("SELECT * FROM profil_usaha WHERE users_id = $id ");
+        $data13 = DB::select("SELECT * FROM ppt WHERE users_id = $id ");
+        $data14 = DB::select("SELECT * FROM sku WHERE users_id = $id ");
+        $data15 = DB::select("SELECT * FROM keuangan_usaha WHERE users_id = $id ");
 
-
-        //passing data ke view
         return view('mahasiswa.edit', [
             'mahasiswa' => $id_user, 'message' => $data, 'beasiswa' => $data2, 'forum' => $data3, 'karya' => $data4,
             'mentoring' => $data5, 'org_mhs' => $data6, 'prestasi' => $data7, 'sosial' => $data8, 'tahsin' => $data9,
-            'laporan' => $data10,  'nilai' => $data11
+            'laporan' => $data10,  'nilai' => $data11, 'usaha' => $data12, 'ppt' => $data13, 'sku' => $data14, 
+            'keuangan' => $data15
         ]);
     }
 

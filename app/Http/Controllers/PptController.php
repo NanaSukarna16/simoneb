@@ -3,20 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Keuangan;
+use App\Models\PPT;
 use Illuminate\Support\Facades\File;
 
-class KeuanganController extends Controller
+class PptController extends Controller
 {
-    public $new_keuangan;
+    public $new_ppt;
     public function __construct()
     {
-        $this->new_keuangan = new Keuangan();
+        $this->new_ppt = new PPT();
     }
     public function index()
     {
 
-        return view('keuangan.index');
+        return view('ppt.index');
     }
 
     /**
@@ -26,7 +26,7 @@ class KeuanganController extends Controller
      */
     public function create()
     {
-       return view('keuangan.create');
+        return view('ppt.create');
     }
 
     /**
@@ -38,13 +38,13 @@ class KeuanganController extends Controller
     public function store(Request $request)
     {
         $rules = [
-            'file' => "required|mimes:pptx,docx,xlsx|"
+            'file' => "required|mimes:pptx|"
         ];
         $messages = [
             'required' => ":attribute tidak boleh kosong",
             'min' => ":attribute karakter terlalu pendek",
             'max' => ":attribute karakter terlalu panjang / ukuran terlalu besar",
-            'mimes' => ":attribute Ektensi error, gunakan .pptx atau .docx dan .xlsx"
+            'mimes' => ":attribute Ektensi error, gunakan .pptx"
         ];
 
         $this->validate($request, $rules, $messages);
@@ -52,16 +52,16 @@ class KeuanganController extends Controller
 
         $namaFile = $nm->getClientOriginalName();
 
-        $this->new_keuangan->file = $namaFile;
-        $this->new_keuangan->users_id = $request->user;
+        $this->new_ppt->file = $namaFile;
+        $this->new_ppt->users_id = $request->user;
 
 
-        $nm->move(public_path() . '/storage/keuangan', $namaFile);
-        $this->new_keuangan->save();
+        $nm->move(public_path() . '/storage/ppt', $namaFile);
+        $this->new_ppt->save();
 
         // dd($request->all());
 
-        return redirect()->route('keuangan')->with('status', 'Laporan Keuangan Usaha successfully created');
+        return redirect()->route('ppt')->with('status', 'PPT successfully created');
     }
 
     /**
@@ -84,10 +84,10 @@ class KeuanganController extends Controller
     public function edit($id)
     {
         // dapatkan data berdasarkan id kategori
-        $keuangan_edit = Keuangan::find($id);
+        $ppt_edit = PPT::find($id);
 
-        return view('keuangan.edit', [
-           'keuangan' => $keuangan_edit
+        return view('ppt.edit', [
+           'ppt' => $ppt_edit
         ]);
     }
 
@@ -101,37 +101,37 @@ class KeuanganController extends Controller
     public function update(Request $request, $id)
     {
         $rules = [
-            'file' => "required|mimes:pptx,docx,xlsx|"
+            'file' => "required|mimes:pptx|"
         ];
         $messages = [
             'required' => ":attribute tidak boleh kosong",
             'min' => ":attribute karakter terlalu pendek",
             'max' => ":attribute karakter terlalu panjang / ukuran terlalu besar",
-            'mimes' => ":attribute Ektensi error, gunakan .pptx atau .docx dan .xlsx"
+            'mimes' => ":attribute Ektensi error, gunakan .pptx"
         ];
 
-        $keuangan_edit = Keuangan::find($id);
-        $fileLama = $keuangan_edit->file;
+        $ppt_edit = PPT::find($id);
+        $fileLama = $ppt_edit->file;
 
         if (!$request->file) {
-            $keuangan_edit->file = $fileLama;
+            $ppt_edit->file = $fileLama;
         } else {
 
             if ($request->file != $fileLama) {
                 $nm = $request->file;
 
                 $namaFile = $nm->getClientOriginalName();
-                $keuangan_edit->file = $namaFile;
+                $ppt_edit->file = $namaFile;
 
-                $nm->move(public_path() . '/storage/keuangan', $namaFile);
+                $nm->move(public_path() . '/storage/ppt', $namaFile);
             } else {
-                $request->file->move(public_path() . '/storage/keuangan', $fileLama);
+                $request->file->move(public_path() . '/storage/ppt', $fileLama);
             }
         }
-        $keuangan_edit->users_id = $request->user;
-        $keuangan_edit->save();
+        $ppt_edit->users_id = $request->user;
+        $ppt_edit->save();
 
-        return redirect()->route('keuangan')->with('status', 'Laporan Keuangan usaha successfully Updated');
+        return redirect()->route('ppt')->with('status', 'PPT successfully Updated');
     }
 
     /**
@@ -142,14 +142,14 @@ class KeuanganController extends Controller
      */
     public function destroy($id)
     {
-        $keuangan_hapus = Keuangan::findOrFail($id);
-        $image_path = "storage/keuangan/" . $keuangan_hapus->file;
+        $ppt_hapus = PPT::findOrFail($id);
+        $image_path = "storage/ppt/" . $ppt_hapus->file;
 
         if (File::exists($image_path)) {
             File::delete($image_path);
         }
 
-        $keuangan_hapus->delete();
-        return redirect()->route('keuangan')->with('status', 'Laporan Keuangan Usaha successfully deleted');
+        $ppt_hapus->delete();
+        return redirect()->route('ppt')->with('status', 'PPT successfully deleted');
     }
 }

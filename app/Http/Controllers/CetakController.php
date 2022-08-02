@@ -8,6 +8,7 @@ use App\Models\{Angkatan, Nilai, Karya, Sosial, Prestasi, Org_mhs as Org, Forum,
 use PhpOffice\PhpWord\TemplateProcessor;
 use App\Models\Semester;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class CetakController extends Controller
 {
@@ -172,8 +173,12 @@ class CetakController extends Controller
             $ui->cloneRowAndSetValues('tahsin_level', $tahsin);
             $ui->cloneRowAndSetValues('beasiswa_no', $beasiswa);
 
-
+             
+            header("Content-Type: application/octet-stream");
             header('Content-Disposition:attachment; filename=laporan.docx');
+            header('Content-Transfer-Encoding: binary');
+            header('Expires: 0');
+            ob_clean();
             $ui->saveAs('php://output');
 
             exit;
@@ -307,8 +312,9 @@ class CetakController extends Controller
             $ui->cloneRowAndSetValues('tahsin_level', $tahsin);
             $ui->cloneRowAndSetValues('beasiswa_no', $beasiswa);
 
-
+            header("Content-Type: application/octet-stream");
             header('Content-Disposition:attachment; filename=laporan.docx');
+            ob_clean();
             $ui->saveAs('php://output');
 
             exit;
@@ -442,8 +448,10 @@ class CetakController extends Controller
             $ui->cloneRowAndSetValues('tahsin_level', $tahsin);
             $ui->cloneRowAndSetValues('beasiswa_no', $beasiswa);
 
-
+             
+            header("Content-Type: application/octet-stream");
             header('Content-Disposition:attachment; filename=laporan.docx');
+            ob_clean();
             $ui->saveAs('php://output');
 
             exit;
@@ -552,6 +560,12 @@ class CetakController extends Controller
                 'height' => 60,
                 'ratio' => false
             ]);
+            //  $ui->setImageValue('pasfoto_siswa', [
+            //     'path' => "https://discountdoorhardware.ca/wp-content/uploads/2018/06/profile-placeholder-3.jpg",
+            //     'width' => 70,
+            //     'height' => 60,
+            //     'ratio' => false
+            // ]);
 
             $ui->setValues([
                 'nama_siswa'     => $siswa->name,
@@ -578,10 +592,24 @@ class CetakController extends Controller
             $ui->cloneRowAndSetValues('tahsin_level', $tahsin);
             $ui->cloneRowAndSetValues('beasiswa_no', $beasiswa);
 
+            // PhpOffice\PhpWord\Settings::setOutputEscapingEnabled(true);  
 
+            // header("Content-Type: application/octet-stream");
+            // header('Content-Disposition:attachment');
+            header("Content-Type: application/octet-stream");
             header('Content-Disposition:attachment; filename=laporan.docx');
+            // $filename = Str::random(10) . '.docx';
+            //Start read from output buffer
+            // ob_start();
+            // ob_clean();
             $ui->saveAs('php://output');
+            //  $ui->saveAs(storage_path('app/' . $filename));
+            //  return response()->download(storage_path('app/' . $filename));
 
+            //Get the file contents from output buffer and clean
+            // $file = ob_get_clean();
+
+            // return response()->make( $file, 200, $headers );
             exit;
         }
     }

@@ -24,10 +24,10 @@
         <div class="sparkline10-list mt-b-30">
             <div class="sparkline10-hd">
                 <div style="margin-top: 8px" class="main-sparkline10-hd">
-                    <h1>Profil Usaha</h1>
-                    <a  href="{{route('profil-usaha.create')}}">
+                    <h1>PPT</h1>
+                    <a  href="{{route('ppt.create')}}">
                         <button style="margin-top: 10px" type="button" class="btn btn-success btn-rounded btn-icon" data-toggle="tooltip" data-placement="bottom" title="Tambah Karya">
-                            <i class="fa fa-plus "></i> Tambah Profil Usaha
+                            <i class="fa fa-plus "></i> Tambah PPT
                         </button>
                     </a>
                 </div>
@@ -38,36 +38,31 @@
                         <thead>
                             <tr class="bg-success">
                                 <th style="text-align: center">No</th>
-                                <th style="text-align: center">Nama Usaha</th>
-                                <th style="text-align: center">Bidang Usaha</th>
-                                <th style="text-align: center">Status Usaha</th>
-                                <th style="text-align: center">Lama Usaha</th>
-                                <th style="text-align: center">Omset/Bulan</th>
+                                <th style="text-align: center">File</th>
+                                <th style="text-align: center">Tanggal</th>
                                 <th style="text-align: center">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
                             @php
                                 $no = 1;
-                                $profil_usaha = DB::table('profil_usaha')->where('users_id', Auth::user()->id)->get();
+                                $ppt = DB::table('ppt')->where('users_id', Auth::user()->id)->get();
                             @endphp
-                            @forelse ($profil_usaha as $item)   
+                            @forelse ($ppt as $item)   
                             <tr>
                                 <td align="center">{{$no++}}</td>
-                                <td align="center">{{$item->nama}}</td>
-                                <td align="center">{{$item->bidang}}</td>
-                                <td align="center">{{$item->status}}</td>
-                                <td align="center">{{$item->lama}}</td>
-                                <td align="center">{{$item->omset}}</td>
+                                 <td align="center">
+                                    <a href="http://localhost:8000/storage/ppt/{{ $item->file }}">{{ $item->file }}</a>
+                                </td>
+                                <td align="center">{{ \Carbon\Carbon::parse($item->created_at)->translatedFormat(' d F Y') }}</td>
                                 <td style="width: 150px">
                                     <center>
-                                        <a style="text-decoration: none" href="{{route('profil-usaha.edit',$item->id)}}">
+                                        <a style="text-decoration: none" href="{{route('ppt.edit',$item->id)}}">
                                             <button type="button" class="btn btn-warning btn-rounded btn-icon btn-xs" data-toggle="tooltip" data-placement="bottom" title="Edit">
                                                 <i class="fa fa-pencil-square-o"></i>
                                             </button>
-                                        </a>
-                                        
-                                        <a href="{{route('profil-usaha.destroy',$item->id)}}">
+                                        </a>                                      
+                                        <a href="{{route('ppt.destroy',$item->id)}}">
                                             <button type="button" class="btn btn-danger btn-rounded btn-icon btn-xs" data-toggle="tooltip" data-placement="bottom" title="Hapus" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Data ini ?')">
                                                 <i class="fa fa-trash"></i>
                                             </button>

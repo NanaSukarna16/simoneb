@@ -398,6 +398,161 @@
         </div> 
     </div>  
 
+    @elseif (Auth::user()->role == 'mbs')
+    <div class="left-sidebar-pro">
+        <nav id="sidebar"  class="" >
+          <div class="sidebar-header">
+            <a href="index.html"><img class="main-logo" src="{{ asset('template') }}/img/logo/logo.png" width="165px" style="margin-top: 5px;" alt="" /></a>
+            <strong><a href="index.html"><img src="{{ asset('template') }}/img/logo/logo.png" width="60%" alt="" /></a></strong>
+          </div>
+            <div class="left-custom-menu-adp-wrap comment-scrollbar">
+                <nav  class="sidebar-nav left-sidebar-menu-pro">
+                    <ul  class="metismenu" id="menu1">
+                      <li style="background-color: #c4d0dd;margin-top: 10px;">
+                        <a title="Landing Page" href="" aria-expanded="false"><span style="color: #2a6078; font-size: 15px" class="mini-click-non"> MAIN NAVIGATION</span></a>
+                      </li>
+                        <li >
+                          <a title="Landing Page" href="{{route('home')}}" aria-expanded="false"><i style="color: #2a6078" class="fas fa-tachometer-alt "></i><span style="color: #2a6078" class="mini-click-non"> Dashboard</span></a>
+                        </li>
+                        </li>
+                        <li>
+                          <a title="Landing Page" href="{{route('mahasiswa')}}" aria-expanded="false"><i style="color: #2a6078" class="fas fa-user-graduate "></i><span style="color: #2a6078" class="mini-click-non"> Data Mahasiswa</span></a>
+                        </li>
+                        <li>
+                          <a title="Landing Page" href="{{route('portofolio')}}" aria-expanded="false"><i style="color: #2a6078" class="fas fa-chart-bar "></i><span style="color: #2a6078" class="mini-click-non"> Grafik Portofolio</span></a>
+                        </li>
+                      </form>
+                    </ul>
+                </nav>
+            </div>
+        </nav>
+    </div>
+   
+    <!-- End Left menu area -->
+    <!-- Start Welcome area -->
+    <div class="all-content-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="logo-pro">
+                        <a href="{{route('home')}}"><img class="main-logo"  width="165px" src="{{ asset('template')}}/img/logo/logo.png"/></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header-advance-area">
+            <div class="header-top-area">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div style="background-color: #00a7b8" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="header-top-wraper">
+                                <div class="row">
+                                    <div class="col-lg-1 col-md-0 col-sm-1 col-xs-12">
+                                        <div class="menu-switcher-pro">
+                                            <button type="button" id="sidebarCollapse" class="btn bar-button-pro header-drl-controller-btn btn-info navbar-btn">
+												<i class="educate-icon educate-nav"></i>
+											</button>
+                                        </div>
+                                    </div>
+                                    <div  class="col-lg-6 col-md-7 col-sm-6 col-xs-12">
+                                        
+                                    </div>
+                                    <div  class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                                        <div class="header-right-info">
+                                            <ul class="nav navbar-nav mai-top-nav header-right-menu">
+                                            
+                                                <li class="nav-item">
+                                                    <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
+														<span class="admin-name">{{ Auth::user()->name}}</span> 
+                                                        <i class="fa fa-angle-down edu-icon edu-down-arrow"></i>
+													</a>
+                                                    <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated zoomIn">
+                                                        <li>
+                                                            <form action="{{ route('logout')}}" method="POST">
+                                                                @csrf
+                                                                <button class="btn btn-primary" style="margin-left: 50px; margin-top: 20px;" type="submit">
+                                                                <span class="edu-icon edu-locked author-log-ic"></span>Log Out
+                                                                </button>
+                                                            </form>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li class="nav-item nav-setting-open"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="educate-icon educate-menu"></i></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Mobile Menu start -->
+            <div class="mobile-menu-area">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="mobile-menu">
+                                <nav id="dropdown">
+                                    <ul class="mobile-menu-nav">
+                                        <li>
+                                          <a data-toggle="collapse" data-target="#Charts" href="{{route('home')}}">Dashboard <span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
+                                        </li>
+                                        <li><a href="{{route('mahasiswa')}}">Data Mahasiswa</a></li>
+                                        <li><a href="{{route('portofolio')}}">Grafik Portofolio</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Mobile Menu end -->
+            <div class="breadcome-area" style="margin-top: 20px">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="breadcome-list single-page-breadcome">
+                                <div class="row" style="height: 35px">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <h3 class="text-center">Sistem Monitoring dan Evaluasi Peraih Beasiswa Full</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="static-table-area">
+            <div class="container-fluid">
+                @yield('konten')
+                
+            </div>
+        </div>
+        <div class="static-table" style="margin-top: 20px">
+          <div class="container-fluid">
+
+              @yield('konten1')
+          </div>
+      </div>
+        <br>
+        <div>
+          <div style="background-color: #00a7b8" class="footer-copyright-area navbar-fixed-bottom" >
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="footer-copy-right">
+                            <p>Copyright © 2021. All rights reserved. By <a href="">STEI SEBI</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div> 
+    </div> 
+
     @elseif (Auth::user()->beasiswa == 'enterpreneur')
 
 
@@ -445,8 +600,8 @@
                         <ul class="submenu-angle" aria-expanded="true">
                             <li><a title="Akademik" href="{{ route('profil-usaha')}}"><span class="mini-sub-pro">Profil Usaha</span></a></li>
                             <li><a title="Karya" href="{{ route('keuangan')}}"><span class="mini-sub-pro">Keuangan Usaha</span></a></li>
-                            <li><a title="Forum" href="{{ route('forum')}}"><span class="mini-sub-pro">PPT</span></a></li>
-                            <li><a title="Prestasi" href="{{ route('prestasi')}}"><span class="mini-sub-pro">SKU</span></a></li>
+                            <li><a title="Forum" href="{{ route('ppt')}}"><span class="mini-sub-pro">PPT</span></a></li>
+                            <li><a title="Prestasi" href="{{ route('sku')}}"><span class="mini-sub-pro">SKU</span></a></li>
                         </ul>
                       </li>
                       <li class="active">

@@ -20,6 +20,8 @@ use App\Http\Controllers\CetakController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\ProfilUsahaController;
 use App\Http\Controllers\KeuanganController;
+use App\Http\Controllers\PptController;
+use App\Http\Controllers\SkuController;
 use App\Models\Laporan;
 
 /*
@@ -145,6 +147,20 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/keuangan-usaha/edit/{id}', [KeuanganController::class, 'edit'])->name('keuangan.edit');
     Route::post('keuangan-usaha/update/{id}', [KeuanganController::class, 'update'])->name('keuangan.update');
     Route::get('/keuangan-usaha/destroy/{id}', [KeuanganController::class, 'destroy'])->name('keuangan.destroy');
+
+    Route::get('/ppt', [PptController::class, 'index'])->name('ppt');
+    Route::get('/ppt/create', [PptController::class, 'create'])->name('ppt.create');
+    Route::post('ppt/store', [PptController::class, 'store'])->name('ppt.store');
+    Route::get('/ppt/edit/{id}', [PptController::class, 'edit'])->name('ppt.edit');
+    Route::post('ppt/update/{id}', [PptController::class, 'update'])->name('ppt.update');
+    Route::get('/ppt/destroy/{id}', [PptController::class, 'destroy'])->name('ppt.destroy');
+
+    Route::get('/sku', [SkuController::class, 'index'])->name('sku');
+    Route::get('/sku/create', [SkuController::class, 'create'])->name('sku.create');
+    Route::post('sku/store', [SkuController::class, 'store'])->name('sku.store');
+    Route::get('/sku/edit/{id}', [SkuController::class, 'edit'])->name('sku.edit');
+    Route::post('sku/update/{id}', [SkuController::class, 'update'])->name('sku.update');
+    Route::get('/sku/destroy/{id}', [SkuController::class, 'destroy'])->name('sku.destroy');
 
     Route::post('/cetak', [CetakController::class, 'store'])->name('cetak');
 
