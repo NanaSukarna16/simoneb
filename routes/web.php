@@ -22,6 +22,7 @@ use App\Http\Controllers\ProfilUsahaController;
 use App\Http\Controllers\KeuanganController;
 use App\Http\Controllers\PptController;
 use App\Http\Controllers\SkuController;
+use App\Http\Controllers\PewancaraController;
 use App\Models\Laporan;
 
 /*
@@ -161,6 +162,13 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/sku/edit/{id}', [SkuController::class, 'edit'])->name('sku.edit');
     Route::post('sku/update/{id}', [SkuController::class, 'update'])->name('sku.update');
     Route::get('/sku/destroy/{id}', [SkuController::class, 'destroy'])->name('sku.destroy');
+
+    Route::get('/pewancara', [PewancaraController::class, 'index'])->name('pewancara');
+    Route::get('/pewancara/create', [PewancaraController::class, 'create'])->name('pewancara.create');
+    Route::post('pewancara/store', [PewancaraController::class, 'store'])->name('pewancara.store');
+    Route::get('/pewancara/edit/{id}', [PewancaraController::class, 'edit'])->name('pewancara.edit');
+    Route::post('pewancara/update/{id}', [PewancaraController::class, 'update'])->name('pewancara.update');
+    Route::get('/pewancara/destroy/{id}', [PewancaraController::class, 'destroy'])->name('pewancara.destroy');
 
     Route::post('/cetak', [CetakController::class, 'store'])->name('cetak');
 

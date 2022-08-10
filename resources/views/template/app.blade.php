@@ -109,7 +109,10 @@
                           <a title="Landing Page" href="{{route('mahasiswa')}}" aria-expanded="false"><i style="color: #2a6078" class="fas fa-user-graduate "></i><span style="color: #2a6078" class="mini-click-non"> Data Mahasiswa</span></a>
                         </li>
                         <li>
-                          <a title="Landing Page" href="{{route('portofolio')}}" aria-expanded="false"><i style="color: #2a6078" class="fas fa-chart-bar "></i><span style="color: #2a6078" class="mini-click-non"> Grafik Portofolio</span></a>
+                            <a title="Landing Page" href="{{route('portofolio')}}" aria-expanded="false"><i style="color: #2a6078" class="fas fa-chart-bar "></i><span style="color: #2a6078" class="mini-click-non"> Grafik Portofolio</span></a>
+                        </li>
+                        <li>
+                            <a title="Landing Page" href="{{route('pewancara')}}" aria-expanded="false"><i style="color: #2a6078" class="fa fa-users"></i><span style="color: #2a6078" class="mini-click-non"> Data Pewancara</span></a>
                         </li>
                       </form>
                     </ul>
@@ -228,7 +231,7 @@
           </div>
       </div>
         <br>
-        <div>
+        {{-- <div>
           <div style="background-color: #00a7b8" class="footer-copyright-area navbar-fixed-bottom" >
             <div class="container-fluid">
                 <div class="row">
@@ -240,7 +243,7 @@
                 </div>
             </div>
           </div>
-        </div> 
+        </div>  --}}
     </div>  
 
     @elseif (Auth::user()->role == 'pewancara')

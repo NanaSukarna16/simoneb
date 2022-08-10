@@ -44,7 +44,6 @@ class NilaiController extends Controller
      */
     public function store(Request $request)
     {
-
         $rules = [
             'foto' => "required|mimes:png,jpg,jpeg,pdf|",
             'user' => "required",

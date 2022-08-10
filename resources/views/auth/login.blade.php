@@ -125,7 +125,10 @@
                                 @enderror
                               </div> --}}
                               <button class="btn btn-success btn-block loginbtn" type="submit">Login</button>
-                              <a class="btn btn-default btn-block" href="{{route('register')}}">Register</a>
+                              <p class="text-center">
+                                <a class="btn btn-default" href="http://localhost:8000/password/reset">Lupa Kata Sandi?</a>
+                              </p>
+                              <a class="btn btn-default btn-block" style="margin-top: -10px" href="{{route('register')}}">Register</a>
                           </form>
                       </div>
                   </div>

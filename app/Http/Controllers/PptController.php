@@ -15,7 +15,6 @@ class PptController extends Controller
     }
     public function index()
     {
-
         return view('ppt.index');
     }
 
@@ -87,7 +86,7 @@ class PptController extends Controller
         $ppt_edit = PPT::find($id);
 
         return view('ppt.edit', [
-           'ppt' => $ppt_edit
+            'ppt' => $ppt_edit
         ]);
     }
 
